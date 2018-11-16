@@ -5,4 +5,8 @@ public class Jenkins {
 		
 		System.out.println("Hello we are here");
 	}
+	
+	public static void run(int i){
+	
+	}
 }
