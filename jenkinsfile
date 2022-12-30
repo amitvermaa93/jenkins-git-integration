@@ -1,0 +1,23 @@
+@Library('pipelinelibdemo')_
+pipeline {
+    agent any
+    stages {
+        stage('Hello') {
+            steps {
+                //echo 'Hello World'
+                sayHello 'Dallas'
+            }
+        }
+         stage('Checkout') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '4d200d6c-9432-4496-a4b1-a6778c580c0f', url: 'https://github.com/harshaorigin/Origin.git']]])
+            }
+        }
+        stage('Java Commands') {
+            steps {
+                sh '''javac HelloWorld.java
+java HelloWorld'''
+            }
+        }
+    }
+}
